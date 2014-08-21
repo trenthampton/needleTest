@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app>
+
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="index.js"></script>
+    <link href="style.css" rel="stylesheet">
+      
+  </head>
+  
+  <body ng-controller="Ctrl">
+      
+      
+      <h4>Users Table</h4>
+      <table border>
+          <tr ng-repeat="person in people">
+                <td>{{ person.name }}</td>
+                <td>{{ person.email }}</td>
+               <td>{{date | date:'yyyy-MM-dd'}}</td>
+          </tr>
+      </table>
+      
+      
+  
+    <form name="myForm" novalidate class="form-horizontal" onsubmit="stamp()">
+    
+      <div class="control-group" ng-class="{error: isInvalid('name')}">
+        <label>Name:</label>
+        <input type="text" name="name" placeholder="Name" ng-model="user.name" required/>
+        <span ng-show="isValid('name')">Valid</span>
+      </div>
+      
+        <div class="control-group" ng-class="{error: isInvalid('email')}">
+        <label>Name:</label>
+        <input type="email" name="email" placeholder="email" ng-model="user.email" required/>
+        <span ng-show="isValid('email')">Valid</span>
+      </div>
+        <input type="hidden" name="time" ng-model=user.time>
+        
+        <button ng-click="registerUser(user)"ng-disabled="myForm.$invalid || isUnchanged(user)">SAVE</button>
+    </form>
+  </body>
+  
+</html>
